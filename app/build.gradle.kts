@@ -36,6 +36,8 @@ android {
 }
 
 dependencies {
+    // Splash Screen
+    implementation(libs.androidx.core.splashscreen)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
