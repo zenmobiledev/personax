@@ -33,11 +33,18 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
     // Splash Screen
     implementation(libs.androidx.core.splashscreen)
+
+    // View Pager 2
+    implementation(libs.androidx.view.pager2)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
