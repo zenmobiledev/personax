@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.hilt.android)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -45,6 +47,16 @@ dependencies {
 
     // View Pager 2
     implementation(libs.androidx.view.pager2)
+
+    // Preference Data Store
+    implementation(libs.androidx.datastore.preferences)
+
+    // Hilt
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.android.compiler)
+
+    // Lifecycle
+    implementation(libs.lifecycle.viewmodel)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

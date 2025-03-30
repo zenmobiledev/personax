@@ -4,15 +4,18 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.mobbelldev.personax.MainActivity
 import com.mobbelldev.personax.R
 import com.mobbelldev.personax.databinding.ActivityLoginBinding
+import com.mobbelldev.personax.presentation.login.viewmodel.LoginViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private val textWatcher = object : TextWatcher {
@@ -41,6 +44,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
     }
+    private val loginViewModel: LoginViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,7 +57,6 @@ class LoginActivity : AppCompatActivity() {
             insets
         }
 
-
         with(binding) {
             // Toolbar
             toolbarLogin.setNavigationOnClickListener { onBackPressedDispatcher.onBackPressed() }
@@ -64,12 +67,14 @@ class LoginActivity : AppCompatActivity() {
 
             // Button Login
             btnLogin.setOnClickListener {
-                startActivity(
-                    Intent(
-                        this@LoginActivity,
-                        MainActivity::class.java
-                    )
+                loginViewModel.setLogin(
+                    isLogin = true
                 )
+                val intent = Intent(this@LoginActivity, MainActivity::class.java).apply {
+                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                }
+                startActivity(intent)
+                finish()
             }
         }
     }
