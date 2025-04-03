@@ -10,10 +10,10 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.tabs.TabLayoutMediator
-import com.mobbelldev.personax.MainActivity
 import com.mobbelldev.personax.R
 import com.mobbelldev.personax.databinding.ActivityWalkthroughBinding
 import com.mobbelldev.personax.presentation.login.LoginActivity
+import com.mobbelldev.personax.presentation.main.MainActivity
 import com.mobbelldev.personax.presentation.walkthrough.adapter.WalkthroughAdapter
 import com.mobbelldev.personax.presentation.walkthrough.viewmodel.WalkthroughViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -57,7 +57,7 @@ class WalkthroughActivity : AppCompatActivity() {
             insets
         }
         setupViewPager()
-        binding.btnLogin.setOnClickListener {
+        binding.btnMoveToLoginPage.setOnClickListener {
             startActivity(Intent(this@WalkthroughActivity, LoginActivity::class.java))
         }
     }

@@ -13,4 +13,7 @@
     <string name="text_sub_title_illustration_4">Track your height, weight, blood type, and unique details like hair and eye color.</string>
     <string name="text_title_illustration_5">Build Your Career Profile</string>
     <string name="text_sub_title_illustration_5">Manage your company details and job position to enhance your professional presence.</string>
+    <string name="text_user_image">User Image</string>
+    <string name="text_favorite">Favorite</string>
+    <string name="text_logout">Logout</string>
 </resources>
