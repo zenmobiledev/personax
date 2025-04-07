@@ -30,6 +30,7 @@ class Mapper @Inject constructor() {
 
     private fun mapResponseToDomain(usersItemDTO: UsersItemDTO?): UsersItem {
         return UsersItem(
+            fullName = usersItemDTO?.firstName + " " + usersItemDTO?.lastName,
             lastName = usersItemDTO?.lastName,
             role = usersItemDTO?.role,
             gender = usersItemDTO?.gender,

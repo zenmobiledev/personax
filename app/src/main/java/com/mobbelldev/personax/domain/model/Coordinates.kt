@@ -1,12 +1,11 @@
 package com.mobbelldev.personax.domain.model
 
-import com.google.gson.annotations.SerializedName
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+import kotlinx.parcelize.RawValue
 
+@Parcelize
 data class Coordinates(
-
-	@field:SerializedName("lng")
-	val lng: Any? = null,
-
-	@field:SerializedName("lat")
-	val lat: Any? = null
-)
+    val lng: @RawValue Any? = null,
+    val lat: @RawValue Any? = null,
+) : Parcelable

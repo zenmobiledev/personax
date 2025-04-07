@@ -10,7 +10,8 @@ import com.mobbelldev.personax.R
 import com.mobbelldev.personax.databinding.ItemListUserBinding
 import com.mobbelldev.personax.domain.model.UsersItem
 
-class MainAdapter : ListAdapter<UsersItem, MainAdapter.MainViewHolder>(DIFF_UTIL) {
+class MainAdapter(val clickItemListener: (UsersItem) -> Unit) :
+    ListAdapter<UsersItem, MainAdapter.MainViewHolder>(DIFF_UTIL) {
     inner class MainViewHolder(private val binding: ItemListUserBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(usersItem: UsersItem) {
@@ -20,6 +21,11 @@ class MainAdapter : ListAdapter<UsersItem, MainAdapter.MainViewHolder>(DIFF_UTIL
                 .into(binding.ivUser)
             binding.tvNameUser.text = usersItem.username
             binding.tvEmailUser.text = usersItem.email
+
+            // Move To Detail Page
+            binding.root.setOnClickListener {
+                clickItemListener(usersItem)
+            }
         }
     }
 

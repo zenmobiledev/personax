@@ -14,6 +14,7 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import com.mobbelldev.personax.R
 import com.mobbelldev.personax.databinding.ActivityMainBinding
+import com.mobbelldev.personax.presentation.detail.DetailActivity
 import com.mobbelldev.personax.presentation.main.adapter.MainAdapter
 import com.mobbelldev.personax.presentation.main.viewmodel.MainViewModel
 import com.mobbelldev.personax.presentation.walkthrough.WalkthroughActivity
@@ -24,7 +25,14 @@ import kotlinx.coroutines.launch
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val mainViewModel: MainViewModel by viewModels()
-    private val mainAdapter = MainAdapter()
+    private val mainAdapter by lazy {
+        MainAdapter {
+            val intent = Intent(this@MainActivity, DetailActivity::class.java).apply {
+                putExtra(DetailActivity.USER_DETAIL, it)
+            }
+            startActivity(intent)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

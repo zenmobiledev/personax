@@ -1,15 +1,11 @@
 package com.mobbelldev.personax.domain.model
 
-import com.google.gson.annotations.SerializedName
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class Crypto(
-
-	@field:SerializedName("wallet")
-	val wallet: String? = null,
-
-	@field:SerializedName("coin")
-	val coin: String? = null,
-
-	@field:SerializedName("network")
-	val network: String? = null
-)
+    val wallet: String? = null,
+    val coin: String? = null,
+    val network: String? = null,
+) : Parcelable

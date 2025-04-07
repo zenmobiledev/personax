@@ -1,18 +1,12 @@
 package com.mobbelldev.personax.domain.model
 
-import com.google.gson.annotations.SerializedName
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class Company(
-
-	@field:SerializedName("address")
-	val address: Address? = null,
-
-	@field:SerializedName("name")
-	val name: String? = null,
-
-	@field:SerializedName("department")
-	val department: String? = null,
-
-	@field:SerializedName("title")
-	val title: String? = null
-)
+    val address: Address? = null,
+    val name: String? = null,
+    val department: String? = null,
+    val title: String? = null,
+) : Parcelable

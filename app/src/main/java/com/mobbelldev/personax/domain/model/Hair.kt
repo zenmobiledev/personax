@@ -1,12 +1,10 @@
 package com.mobbelldev.personax.domain.model
 
-import com.google.gson.annotations.SerializedName
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class Hair(
-
-	@field:SerializedName("color")
-	val color: String? = null,
-
-	@field:SerializedName("type")
-	val type: String? = null
-)
+    val color: String? = null,
+    val type: String? = null,
+) : Parcelable

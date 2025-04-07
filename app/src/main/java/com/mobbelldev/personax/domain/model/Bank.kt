@@ -1,21 +1,13 @@
 package com.mobbelldev.personax.domain.model
 
-import com.google.gson.annotations.SerializedName
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class Bank(
-
-	@field:SerializedName("iban")
-	val iban: String? = null,
-
-	@field:SerializedName("cardExpire")
-	val cardExpire: String? = null,
-
-	@field:SerializedName("cardType")
-	val cardType: String? = null,
-
-	@field:SerializedName("currency")
-	val currency: String? = null,
-
-	@field:SerializedName("cardNumber")
-	val cardNumber: String? = null
-)
+    val iban: String? = null,
+    val cardExpire: String? = null,
+    val cardType: String? = null,
+    val currency: String? = null,
+    val cardNumber: String? = null,
+) : Parcelable
