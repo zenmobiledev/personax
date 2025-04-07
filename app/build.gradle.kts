@@ -38,6 +38,7 @@ android {
 
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 }
 
@@ -57,6 +58,14 @@ dependencies {
 
     // Lifecycle
     implementation(libs.lifecycle.viewmodel)
+
+    // Square Up
+    implementation(libs.squareup.retrofit2)
+    implementation(libs.squareup.converter.gson)
+    implementation(libs.squareup.logging.interceptor)
+
+    // Glide
+    implementation(libs.glide)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

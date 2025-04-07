@@ -15,6 +15,9 @@ datastorePreferences = "1.1.2"
 hiltAndroid = "2.51.1"
 kspVersion = "2.0.21-1.0.26"
 lifecycleViewModel = "2.8.7"
+squareupVersion = "2.11.0"
+loggingInterceptorVersion = "4.12.0"
+glideVersion = "4.16.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -31,6 +34,10 @@ androidx-datastore-preferences = { module = "androidx.datastore:datastore-prefer
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hiltAndroid" }
 hilt-android-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hiltAndroid" }
 lifecycle-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycleViewModel" }
+squareup-retrofit2 = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "squareupVersion" }
+squareup-converter-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "squareupVersion" }
+squareup-logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "loggingInterceptorVersion" }
+glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glideVersion" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
