@@ -1,6 +1,7 @@
 package com.mobbelldev.personax.presentation.detail
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -61,7 +62,8 @@ class DetailActivity : AppCompatActivity() {
                     val lng = (userDetail.address?.coordinates?.lng as? Number)?.toDouble()
 
                     if (lat != null && lng != null) {
-                        val uri = "geo:$lat,$lng".toUri()
+                        val label = Uri.encode("${userDetail.address.address}, ${userDetail.address.city}, ${userDetail.address.state}")
+                        val uri = "geo:0,0?q=$lat,$lng($label)".toUri()
                         val intent = Intent(Intent.ACTION_VIEW, uri)
                         intent.setPackage("com.google.android.apps.maps")
                         startActivity(intent)
