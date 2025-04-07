@@ -1,9 +1,11 @@
 package com.mobbelldev.personax.presentation.detail
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.net.toUri
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.bumptech.glide.Glide
@@ -40,18 +42,36 @@ class DetailActivity : AppCompatActivity() {
                     .into(ivImage)
 
                 flPhone.setOnClickListener {
-                    Toast.makeText(this@DetailActivity, "Move to Phone Page", Toast.LENGTH_SHORT)
-                        .show()
+                    // intent tel
+                    val intent = Intent(Intent.ACTION_DIAL)
+                    intent.data = "tel:${userDetail.phone}".toUri()
+                    startActivity(intent)
                 }
 
                 flEmail.setOnClickListener {
-                    Toast.makeText(this@DetailActivity, "Move to Email Page", Toast.LENGTH_SHORT)
-                        .show()
+                    // intent email
+                    val intent = Intent(Intent.ACTION_SENDTO)
+                    intent.data = "mailto:${userDetail.email}".toUri()
+                    startActivity(Intent.createChooser(intent, "Send Email"))
                 }
 
                 flMaps.setOnClickListener {
-                    Toast.makeText(this@DetailActivity, "Move to Maps Page", Toast.LENGTH_SHORT)
-                        .show()
+                    // intent maps
+                    val lat = (userDetail.address?.coordinates?.lat as? Number)?.toDouble()
+                    val lng = (userDetail.address?.coordinates?.lng as? Number)?.toDouble()
+
+                    if (lat != null && lng != null) {
+                        val uri = "geo:$lat,$lng".toUri()
+                        val intent = Intent(Intent.ACTION_VIEW, uri)
+                        intent.setPackage("com.google.android.apps.maps")
+                        startActivity(intent)
+                    } else {
+                        Toast.makeText(
+                            this@DetailActivity,
+                            "Location not available",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
                 }
             }
         }
