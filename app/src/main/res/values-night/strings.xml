@@ -19,4 +19,7 @@
     <string name="text_location_icon">Location Icon</string>
     <string name="text_email_icon">Email Icon</string>
     <string name="text_phone_icon">Phone Icon</string>
+    <string name="text_stats">STATS</string>
+    <string name="text_weight">Weight</string>
+    <string name="text_height">Height</string>
 </resources>

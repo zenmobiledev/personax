@@ -62,7 +62,8 @@ class DetailActivity : AppCompatActivity() {
                     val lng = (userDetail.address?.coordinates?.lng as? Number)?.toDouble()
 
                     if (lat != null && lng != null) {
-                        val label = Uri.encode("${userDetail.address.address}, ${userDetail.address.city}, ${userDetail.address.state}")
+                        val label =
+                            Uri.encode("${userDetail.address.address}, ${userDetail.address.city}, ${userDetail.address.state}")
                         val uri = "geo:0,0?q=$lat,$lng($label)".toUri()
                         val intent = Intent(Intent.ACTION_VIEW, uri)
                         intent.setPackage("com.google.android.apps.maps")
@@ -75,6 +76,22 @@ class DetailActivity : AppCompatActivity() {
                         ).show()
                     }
                 }
+
+                // WEIGHT
+                val progressWeight = when (val h = userDetail.weight) {
+                    is Double -> h.toInt()
+                    is Float -> h.toInt()
+                    else -> 0
+                }
+                progressIndicatorWeight.progress = progressWeight
+
+                // HEIGHT
+                val progressHeight = when (val w = userDetail.height) {
+                    is Double -> w.toInt()
+                    is Float -> w.toInt()
+                    else -> 0
+                }
+                progressIndicatorHeight.progress = progressHeight
             }
         }
     }
