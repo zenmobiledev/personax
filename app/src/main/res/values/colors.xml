@@ -3,6 +3,16 @@
     <!--Default Colors-->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="green">#008000</color>
+    <color name="red">#FF0000</color>
+    <color name="hazel">#8E7618</color>
+    <color name="amber">#FFBF00</color>
+    <color name="blue">#0000FF</color>
+    <color name="brown">#8B4513</color>
+    <color name="violet">#8F00FF</color>
+    <color name="gray">#808080</color>
+    <color name="blonde">#FAF0BE</color>
+    <color name="purple">#800080</color>
 
     <color name="md_theme_primary">#38608F</color>
     <color name="md_theme_onPrimary">#FFFFFF</color>

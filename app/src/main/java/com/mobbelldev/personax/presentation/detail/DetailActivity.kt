@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -13,6 +14,8 @@ import com.bumptech.glide.Glide
 import com.mobbelldev.personax.R
 import com.mobbelldev.personax.databinding.ActivityDetailBinding
 import com.mobbelldev.personax.domain.model.UsersItem
+import com.mobbelldev.personax.presentation.main.constant.HairColor
+import com.mobbelldev.personax.presentation.main.constant.HairType
 
 class DetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailBinding
@@ -77,6 +80,9 @@ class DetailActivity : AppCompatActivity() {
                     }
                 }
 
+                // AGE
+                progressIndicatorAge.progress = userDetail.age ?: 0
+
                 // WEIGHT
                 val progressWeight = when (val h = userDetail.weight) {
                     is Double -> h.toInt()
@@ -92,6 +98,26 @@ class DetailActivity : AppCompatActivity() {
                     else -> 0
                 }
                 progressIndicatorHeight.progress = progressHeight
+
+                // HAIR
+                val hairType = HairType.fromString(userDetail.hair?.type)
+                val hairTypeDrawable = hairType?.image ?: R.drawable.baseline_question_mark_24
+                Glide.with(this@DetailActivity)
+                    .load(hairTypeDrawable)
+                    .into(ivHairType)
+                tvHairType.text = userDetail.hair?.type
+
+                if (userDetail.hair?.color != null) {
+                    val hairColor = HairColor.fromString(value = userDetail.hair.color)
+                    if (hairColor != null) {
+                        val hairColorRes = hairColor.value
+                        ivHairColor.backgroundTintList =
+                            ContextCompat.getColorStateList(this@DetailActivity, hairColorRes)
+                        tvHairColor.text = userDetail.hair.color
+                    } else {
+                        tvHairColor.text = getString(R.string.text_not_found)
+                    }
+                }
             }
         }
     }
