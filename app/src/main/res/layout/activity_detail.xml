@@ -244,12 +244,36 @@
             app:layout_constraintTop_toBottomOf="@+id/iv_hair_color"
             tools:text="Hair Color" />
 
+        <ImageView
+            android:id="@+id/iv_blood_type"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_rectangle"
+            android:padding="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_hair_type"
+            tools:src="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/tv_blood_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textAppearance="@style/Title.Medium"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/iv_blood_type"
+            app:layout_constraintStart_toStartOf="@+id/iv_blood_type"
+            app:layout_constraintTop_toBottomOf="@+id/iv_blood_type"
+            tools:text="Blood Type" />
+
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.50121653" />
+            app:layout_constraintGuide_percent="0.50" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>

@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide
 import com.mobbelldev.personax.R
 import com.mobbelldev.personax.databinding.ActivityDetailBinding
 import com.mobbelldev.personax.domain.model.UsersItem
+import com.mobbelldev.personax.presentation.main.constant.BloodType
 import com.mobbelldev.personax.presentation.main.constant.HairColor
 import com.mobbelldev.personax.presentation.main.constant.HairType
 
@@ -118,6 +119,18 @@ class DetailActivity : AppCompatActivity() {
                         tvHairColor.text = getString(R.string.text_not_found)
                     }
                 }
+
+                // BLOOD TYPE
+                val bloodType = BloodType.fromString(
+                    userDetail.bloodGroup ?: getString(R.string.text_not_found)
+                )
+                val bloodTypeDrawable =
+                    bloodType?.image ?: R.drawable.baseline_question_mark_24
+                Glide.with(this@DetailActivity)
+                    .load(bloodTypeDrawable)
+                    .into(ivBloodType)
+                tvBloodType.text = userDetail.bloodGroup
+
             }
         }
     }
