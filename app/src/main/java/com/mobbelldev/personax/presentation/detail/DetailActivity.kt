@@ -110,40 +110,40 @@ class DetailActivity : AppCompatActivity() {
                     .into(ivHairType)
                 tvHairType.text = hairType?.type
 
-                if (userDetail.hair?.color != null) {
-                    val hairColor = HairColor.fromString(value = userDetail.hair.color)
-                    if (hairColor != null) {
-                        val hairColorRes = hairColor.value
-                        ivHairColor.backgroundTintList =
-                            ContextCompat.getColorStateList(this@DetailActivity, hairColorRes)
-                        tvHairColor.text = userDetail.hair.color
-                    } else {
-                        tvHairColor.text = getString(R.string.text_not_found)
-                    }
+                val hairColor = HairColor.fromString(
+                    value = userDetail.hair?.color ?: getString(R.string.text_not_found)
+                )
+                if (hairColor != null) {
+                    val hairColorRes = hairColor.value
+                    ivHairColor.backgroundTintList =
+                        ContextCompat.getColorStateList(this@DetailActivity, hairColorRes)
+                    tvHairColor.text = hairColor.color
+
+
+                    // BLOOD TYPE
+                    val bloodType = BloodType.fromString(
+                        userDetail.bloodGroup ?: getString(R.string.text_not_found)
+                    )
+                    val bloodTypeDrawable =
+                        bloodType?.image ?: R.drawable.baseline_question_mark_24
+                    Glide.with(this@DetailActivity)
+                        .load(bloodTypeDrawable)
+                        .into(ivBloodType)
+                    tvBloodType.text = bloodType?.type
+
+                    // EYE
+                    val eyeColor = EyeColor.fromString(
+                        value = userDetail.eyeColor ?: getString(R.string.text_not_found)
+                    )
+                    val eyeDrawable = eyeColor?.image ?: R.drawable.baseline_question_mark_24
+                    Glide.with(this@DetailActivity)
+                        .load(eyeDrawable)
+                        .into(ivEyeColor)
+                    tvEyeColor.text = eyeColor?.color
                 }
-
-                // BLOOD TYPE
-                val bloodType = BloodType.fromString(
-                    userDetail.bloodGroup ?: getString(R.string.text_not_found)
-                )
-                val bloodTypeDrawable =
-                    bloodType?.image ?: R.drawable.baseline_question_mark_24
-                Glide.with(this@DetailActivity)
-                    .load(bloodTypeDrawable)
-                    .into(ivBloodType)
-                tvBloodType.text = bloodType?.type
-
-                // EYE
-                val eyeColor = EyeColor.fromString(
-                    value = userDetail.eyeColor ?: getString(R.string.text_not_found)
-                )
-                val eyeDrawable = eyeColor?.image ?: R.drawable.baseline_question_mark_24
-                Glide.with(this@DetailActivity)
-                    .load(eyeDrawable)
-                    .into(ivEyeColor)
-                tvEyeColor.text = eyeColor?.color
             }
         }
+
     }
 
     companion object {
