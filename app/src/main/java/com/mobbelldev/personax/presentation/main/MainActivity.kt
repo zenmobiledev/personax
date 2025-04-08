@@ -1,6 +1,7 @@
 package com.mobbelldev.personax.presentation.main
 
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -8,6 +9,7 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
@@ -89,6 +91,24 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
+        R.id.theme_menu -> {
+            val currentNightMode =
+                resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
+
+            when (currentNightMode) {
+                Configuration.UI_MODE_NIGHT_YES -> {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                    Toast.makeText(this, "Switched to Light Mode", Toast.LENGTH_SHORT).show()
+                }
+
+                Configuration.UI_MODE_NIGHT_NO -> {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                    Toast.makeText(this, "Switched to Dark Mode", Toast.LENGTH_SHORT).show()
+                }
+            }
+            true
+        }
+
         R.id.favorite_menu -> {
             Toast.makeText(this@MainActivity, "Move to Favorite page", Toast.LENGTH_SHORT).show()
             true
