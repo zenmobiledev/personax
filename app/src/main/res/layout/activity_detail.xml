@@ -185,13 +185,14 @@
             app:layout_constraintTop_toTopOf="@+id/tv_height" />
 
         <TextView
-            android:id="@+id/tv_visualization"
+            android:id="@+id/tv_hair"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="16dp"
-            android:text="@string/text_visualization"
+            android:text="@string/text_hair"
             android:textAlignment="center"
+            android:textAllCaps="true"
             android:textAppearance="@style/Title.Large"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -206,8 +207,8 @@
             android:layout_marginEnd="16dp"
             android:background="@drawable/bg_rectangle"
             android:padding="4dp"
-            app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            app:layout_constraintTop_toBottomOf="@+id/tv_visualization"
+            app:layout_constraintEnd_toStartOf="@+id/guideline1"
+            app:layout_constraintTop_toBottomOf="@+id/tv_hair"
             tools:src="@tools:sample/avatars" />
 
         <TextView
@@ -229,8 +230,8 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             app:cardCornerRadius="1000dp"
-            app:layout_constraintStart_toStartOf="@+id/guideline2"
-            app:layout_constraintTop_toBottomOf="@+id/tv_visualization" />
+            app:layout_constraintStart_toStartOf="@+id/guideline1"
+            app:layout_constraintTop_toBottomOf="@+id/tv_hair" />
 
         <TextView
             android:id="@+id/tv_hair_color"
@@ -244,6 +245,28 @@
             app:layout_constraintTop_toBottomOf="@+id/iv_hair_color"
             tools:text="Hair Color" />
 
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.50" />
+
+        <TextView
+            android:id="@+id/tv_blood"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/text_blood_type"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textAppearance="@style/Title.Large"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_hair_type" />
+
         <ImageView
             android:id="@+id/iv_blood_type"
             android:layout_width="64dp"
@@ -253,7 +276,7 @@
             android:padding="4dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_hair_type"
+            app:layout_constraintTop_toBottomOf="@+id/tv_blood"
             tools:src="@tools:sample/avatars" />
 
         <TextView
@@ -268,12 +291,47 @@
             app:layout_constraintTop_toBottomOf="@+id/iv_blood_type"
             tools:text="Blood Type" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline2"
+        <TextView
+            android:id="@+id/tv_eye"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/text_eye_color"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textAppearance="@style/Title.Large"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_blood_type" />
+
+        <ImageView
+            android:id="@+id/iv_eye_color"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_rectangle"
+            android:padding="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_eye"
+            tools:src="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/tv_eye_color"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.50" />
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="16dp"
+            android:textAppearance="@style/Title.Medium"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/iv_eye_color"
+            app:layout_constraintStart_toStartOf="@+id/iv_eye_color"
+            app:layout_constraintTop_toBottomOf="@+id/iv_eye_color"
+            tools:text="Eye Color" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>

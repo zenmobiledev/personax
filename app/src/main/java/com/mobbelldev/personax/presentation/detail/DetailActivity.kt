@@ -14,9 +14,10 @@ import com.bumptech.glide.Glide
 import com.mobbelldev.personax.R
 import com.mobbelldev.personax.databinding.ActivityDetailBinding
 import com.mobbelldev.personax.domain.model.UsersItem
-import com.mobbelldev.personax.presentation.main.constant.BloodType
-import com.mobbelldev.personax.presentation.main.constant.HairColor
-import com.mobbelldev.personax.presentation.main.constant.HairType
+import com.mobbelldev.personax.presentation.detail.constant.BloodType
+import com.mobbelldev.personax.presentation.detail.constant.EyeColor
+import com.mobbelldev.personax.presentation.detail.constant.HairColor
+import com.mobbelldev.personax.presentation.detail.constant.HairType
 
 class DetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailBinding
@@ -101,12 +102,13 @@ class DetailActivity : AppCompatActivity() {
                 progressIndicatorHeight.progress = progressHeight
 
                 // HAIR
-                val hairType = HairType.fromString(userDetail.hair?.type)
+                val hairType =
+                    HairType.fromString(userDetail.hair?.type ?: getString(R.string.text_not_found))
                 val hairTypeDrawable = hairType?.image ?: R.drawable.baseline_question_mark_24
                 Glide.with(this@DetailActivity)
                     .load(hairTypeDrawable)
                     .into(ivHairType)
-                tvHairType.text = userDetail.hair?.type
+                tvHairType.text = hairType?.type
 
                 if (userDetail.hair?.color != null) {
                     val hairColor = HairColor.fromString(value = userDetail.hair.color)
@@ -129,8 +131,17 @@ class DetailActivity : AppCompatActivity() {
                 Glide.with(this@DetailActivity)
                     .load(bloodTypeDrawable)
                     .into(ivBloodType)
-                tvBloodType.text = userDetail.bloodGroup
+                tvBloodType.text = bloodType?.type
 
+                // EYE
+                val eyeColor = EyeColor.fromString(
+                    value = userDetail.eyeColor ?: getString(R.string.text_not_found)
+                )
+                val eyeDrawable = eyeColor?.image ?: R.drawable.baseline_question_mark_24
+                Glide.with(this@DetailActivity)
+                    .load(eyeDrawable)
+                    .into(ivEyeColor)
+                tvEyeColor.text = eyeColor?.color
             }
         }
     }

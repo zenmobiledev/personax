@@ -23,6 +23,8 @@
     <string name="text_weight">Weight</string>
     <string name="text_height">Height</string>
     <string name="text_age">Age</string>
-    <string name="text_visualization">Visualization</string>
     <string name="text_not_found">Not Found</string>
+    <string name="text_hair">Hair</string>
+    <string name="text_blood_type">Blood type</string>
+    <string name="text_eye_color">Eye</string>
 </resources>

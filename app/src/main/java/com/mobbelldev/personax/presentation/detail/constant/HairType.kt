@@ -1,7 +1,7 @@
-package com.mobbelldev.personax.presentation.main.constant
+package com.mobbelldev.personax.presentation.detail.constant
 
 import com.mobbelldev.personax.R
-import com.mobbelldev.personax.presentation.main.constant.HairType.entries
+import com.mobbelldev.personax.presentation.detail.constant.HairType.entries
 
 enum class HairType(val type: String, val image: Int) {
     STRAIGHT(type = "Straight", image = R.drawable.straight_hair),

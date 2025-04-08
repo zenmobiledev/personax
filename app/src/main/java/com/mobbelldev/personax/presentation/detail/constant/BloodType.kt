@@ -1,4 +1,4 @@
-package com.mobbelldev.personax.presentation.main.constant
+package com.mobbelldev.personax.presentation.detail.constant
 
 import com.mobbelldev.personax.R
 
