@@ -35,4 +35,5 @@ data class UsersItem(
     val phone: String? = null,
     val age: Int? = null,
     val username: String? = null,
+    val isFavorite: Boolean = false
 ) : Parcelable

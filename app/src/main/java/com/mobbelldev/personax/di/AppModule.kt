@@ -1,7 +1,9 @@
 package com.mobbelldev.personax.di
 
-import com.mobbelldev.personax.data.mapper.Mapper
+import com.mobbelldev.personax.data.mapper.FavoriteUserMapper
+import com.mobbelldev.personax.data.mapper.UserResponseMapper
 import com.mobbelldev.personax.data.repository.PersonaXRepositoryImpl
+import com.mobbelldev.personax.data.source.local.dao.FavoriteUserDao
 import com.mobbelldev.personax.data.source.local.datasource.PersonaXLocalDataSource
 import com.mobbelldev.personax.data.source.local.datasource.PersonaXLocalDataSourceImpl
 import com.mobbelldev.personax.data.source.local.preference.PreferenceDataStore
@@ -23,12 +25,14 @@ object AppModule {
     fun provideRepository(
         localDataSource: PersonaXLocalDataSource,
         remoteDataSource: PersonaXRemoteDataSource,
-        mapper: Mapper,
+        userResponseMapper: UserResponseMapper,
+        favoriteUserMapper: FavoriteUserMapper,
     ): PersonaXRepository {
         return PersonaXRepositoryImpl(
             personaXLocalDataSource = localDataSource,
             personaXRemoteDataSource = remoteDataSource,
-            mapper = mapper
+            userResponseMapper = userResponseMapper,
+            favoriteUserMapper = favoriteUserMapper,
         )
     }
 
@@ -36,9 +40,11 @@ object AppModule {
     @Singleton
     fun provideLocalDataSource(
         preference: PreferenceDataStore,
+        favoriteUserDao: FavoriteUserDao,
     ): PersonaXLocalDataSource {
         return PersonaXLocalDataSourceImpl(
-            preferenceDataStore = preference
+            preferenceDataStore = preference,
+            favoriteUserDao = favoriteUserDao
         )
     }
 

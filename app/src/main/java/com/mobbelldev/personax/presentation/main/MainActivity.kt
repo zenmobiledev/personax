@@ -13,7 +13,9 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.mobbelldev.personax.R
 import com.mobbelldev.personax.databinding.ActivityMainBinding
 import com.mobbelldev.personax.presentation.detail.DetailActivity
@@ -28,12 +30,22 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val mainViewModel: MainViewModel by viewModels()
     private val mainAdapter by lazy {
-        MainAdapter {
-            val intent = Intent(this@MainActivity, DetailActivity::class.java).apply {
-                putExtra(DetailActivity.USER_DETAIL, it)
+        MainAdapter(
+            clickItemListener = { user ->
+                val intent = Intent(this@MainActivity, DetailActivity::class.java).apply {
+                    putExtra(DetailActivity.USER_DETAIL, user)
+                }
+                startActivity(intent)
+            },
+            clickSaved = { user ->
+                mainViewModel.insertFavoriteUser(user = user)
+                Toast.makeText(this@MainActivity, "SAVED", Toast.LENGTH_SHORT).show()
+            },
+            clickUnsaved = { user ->
+                mainViewModel.deleteFavoriteUser(user = user)
+                Toast.makeText(this@MainActivity, "UNSAVED", Toast.LENGTH_SHORT).show()
             }
-            startActivity(intent)
-        }
+        )
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,21 +59,23 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupObserver() {
         lifecycleScope.launch {
-            launch {
-                mainViewModel.isLoading.collect {
-                    binding.progressBar.isVisible = it
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                launch {
+                    mainViewModel.isLoading.collect {
+                        binding.progressBar.isVisible = it
+                    }
                 }
-            }
 
-            launch {
-                mainViewModel.errorMessage.collect {
-                    Toast.makeText(this@MainActivity, "Error: $it", Toast.LENGTH_SHORT).show()
+                launch {
+                    mainViewModel.errorMessage.collect {
+                        Toast.makeText(this@MainActivity, "Error: $it", Toast.LENGTH_SHORT).show()
+                    }
                 }
-            }
 
-            launch {
-                mainViewModel.userData.collect {
-                    mainAdapter.submitList(it?.users)
+                launch {
+                    mainViewModel.userList.collect { users ->
+                        mainAdapter.submitList(users)
+                    }
                 }
             }
         }
