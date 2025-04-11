@@ -19,6 +19,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.mobbelldev.personax.R
 import com.mobbelldev.personax.databinding.ActivityMainBinding
 import com.mobbelldev.personax.presentation.detail.DetailActivity
+import com.mobbelldev.personax.presentation.favorite.FavoriteActivity
 import com.mobbelldev.personax.presentation.main.adapter.MainAdapter
 import com.mobbelldev.personax.presentation.main.viewmodel.MainViewModel
 import com.mobbelldev.personax.presentation.walkthrough.WalkthroughActivity
@@ -124,7 +125,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         R.id.favorite_menu -> {
-            Toast.makeText(this@MainActivity, "Move to Favorite page", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this@MainActivity, FavoriteActivity::class.java))
             true
         }
 
