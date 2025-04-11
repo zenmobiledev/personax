@@ -69,7 +69,9 @@ class MainViewModel @Inject constructor(
                             user?.copy(isFavorite = favoriteIds.contains(user.id))
                         } ?: emptyList()
 
-                        _userList.value = users
+                        withContext(Dispatchers.IO) {
+                            _userList.value = users
+                        }
                     }
 
                     is Response.Error -> {
