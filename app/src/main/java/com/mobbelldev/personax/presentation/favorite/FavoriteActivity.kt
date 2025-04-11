@@ -22,7 +22,13 @@ class FavoriteActivity : AppCompatActivity() {
     private lateinit var binding: ActivityFavoriteBinding
     private val favoriteViewModel: FavoriteViewModel by viewModels()
     private val favoriteAdapter by lazy {
-        FavoriteAdapter()
+        FavoriteAdapter(
+            clickUnsaved = {
+                favoriteViewModel.deleteFavoriteUser(
+                    user = it
+                )
+            }
+        )
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

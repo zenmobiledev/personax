@@ -12,7 +12,8 @@ import com.mobbelldev.personax.R
 import com.mobbelldev.personax.databinding.ItemListUserBinding
 import com.mobbelldev.personax.domain.model.FavoriteUser
 
-class FavoriteAdapter() : ListAdapter<FavoriteUser, FavoriteAdapter.FavoriteViewHolder>(DIFF_UTIL) {
+class FavoriteAdapter(val clickUnsaved: (FavoriteUser) -> Unit) :
+    ListAdapter<FavoriteUser, FavoriteAdapter.FavoriteViewHolder>(DIFF_UTIL) {
     inner class FavoriteViewHolder(private val binding: ItemListUserBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(user: FavoriteUser) {
@@ -25,31 +26,17 @@ class FavoriteAdapter() : ListAdapter<FavoriteUser, FavoriteAdapter.FavoriteView
             binding.tvEmailUser.text = user.email
 
             // Favorite
-            val favoriteDrawable = if (user.isFavorite) {
-                R.drawable.baseline_favorite_24
-            } else {
-                R.drawable.baseline_favorite_border_24
-            }
             binding.ivFavorite.setImageDrawable(
                 ContextCompat.getDrawable(
                     context,
-                    favoriteDrawable
+                    R.drawable.baseline_favorite_24
                 )
             )
             binding.flFavorite.setOnClickListener {
-                if (user.isFavorite) {
-//                    clickUnsaved(usersItem)
+                clickUnsaved(user).also {
                     Toast.makeText(context, "UNSAVED", Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(context, "SAVED", Toast.LENGTH_SHORT).show()
-//                    clickSaved(usersItem)
                 }
             }
-
-            // Move To Detail Page
-//            binding.root.setOnClickListener {
-//                clickItemListener(usersItem)
-//            }
         }
     }
 

@@ -92,7 +92,7 @@ class MainViewModel @Inject constructor(
                         username = user.username.toString(),
                         email = user.email.toString(),
                         image = user.image.toString(),
-                        isFavorite = true
+                        isFavorite = true,
                     )
                 )
             }
