@@ -35,7 +35,6 @@ class MainActivity : AppCompatActivity() {
         val isTablet = findViewById<View?>(R.id.fragment_detail_container) != null
 
         if (isTablet) {
-            // two-pane layout (tablet)
             supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_list_container, UserListFragment())
                 .commit()

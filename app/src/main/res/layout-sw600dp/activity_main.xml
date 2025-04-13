@@ -15,7 +15,7 @@
         app:title="@string/app_name"
         app:titleTextAppearance="@style/Title.Large" />
 
-    <!-- Container untuk User List -->
+    <!-- User List -->
     <FrameLayout
         android:id="@+id/fragment_list_container"
         android:layout_width="0dp"
@@ -27,7 +27,7 @@
         app:layout_constraintWidth_percent="0.5"
         tools:ignore="MissingConstraints" />
 
-    <!-- Container untuk Detail User -->
+    <!-- Detail User -->
     <FrameLayout
         android:id="@+id/fragment_detail_container"
         android:layout_width="0dp"
