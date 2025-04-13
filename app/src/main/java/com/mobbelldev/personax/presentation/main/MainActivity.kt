@@ -5,85 +5,38 @@ import android.content.res.Configuration
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.isVisible
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import com.mobbelldev.personax.R
 import com.mobbelldev.personax.databinding.ActivityMainBinding
-import com.mobbelldev.personax.presentation.detail.DetailActivity
 import com.mobbelldev.personax.presentation.favorite.FavoriteActivity
-import com.mobbelldev.personax.presentation.main.adapter.MainAdapter
-import com.mobbelldev.personax.presentation.main.viewmodel.MainViewModel
-import com.mobbelldev.personax.presentation.walkthrough.WalkthroughActivity
+import com.mobbelldev.personax.presentation.list.UserListFragment
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private val mainViewModel: MainViewModel by viewModels()
-    private val mainAdapter by lazy {
-        MainAdapter(
-            clickItemListener = { user ->
-                val intent = Intent(this@MainActivity, DetailActivity::class.java).apply {
-                    putExtra(DetailActivity.USER_DETAIL, user)
-                }
-                startActivity(intent)
-            },
-            clickSaved = { user ->
-                mainViewModel.insertFavoriteUser(user = user)
-                Toast.makeText(this@MainActivity, "SAVED", Toast.LENGTH_SHORT).show()
-            },
-            clickUnsaved = { user ->
-                mainViewModel.deleteFavoriteUser(user = user)
-                Toast.makeText(this@MainActivity, "UNSAVED", Toast.LENGTH_SHORT).show()
-            }
-        )
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setupUI()
+
         setSupportActionBar(binding.toolbar)
-        setupRecyclerView()
-        setupObserver()
-    }
+        val isTablet = findViewById<View?>(R.id.fragment_detail_container) != null
 
-    private fun setupObserver() {
-        lifecycleScope.launch {
-            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                launch {
-                    mainViewModel.isLoading.collect {
-                        binding.progressBar.isVisible = it
-                    }
-                }
-
-                launch {
-                    mainViewModel.errorMessage.collect {
-                        Toast.makeText(this@MainActivity, "Error: $it", Toast.LENGTH_SHORT).show()
-                    }
-                }
-
-                launch {
-                    mainViewModel.userList.collect { users ->
-                        mainAdapter.submitList(users)
-                    }
-                }
-            }
+        if (isTablet) {
+            // two-pane layout (tablet)
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_list_container, UserListFragment())
+//                .replace(R.id.fragment_detail_container, DetailUserFragment())
+                .commit()
         }
-    }
-
-    private fun setupRecyclerView() {
-        binding.rvUser.adapter = mainAdapter
     }
 
     private fun setupUI() {
@@ -130,12 +83,13 @@ class MainActivity : AppCompatActivity() {
         }
 
         R.id.logout_menu -> {
-            mainViewModel.setLogin(
-                isLogin = false
-            ).also {
-                startActivity(Intent(this@MainActivity, WalkthroughActivity::class.java))
-                finish()
-            }
+            Toast.makeText(this@MainActivity, "Logout", Toast.LENGTH_SHORT).show()
+//            mainViewModel.setLogin(
+//                isLogin = false
+//            ).also {
+//                startActivity(Intent(this@MainActivity, WalkthroughActivity::class.java))
+//                finish()
+//            }
             true
         }
 

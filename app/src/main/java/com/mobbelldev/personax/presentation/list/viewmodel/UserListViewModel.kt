@@ -1,4 +1,4 @@
-package com.mobbelldev.personax.presentation.main.viewmodel
+package com.mobbelldev.personax.presentation.list.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -25,7 +25,7 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(
+class UserListViewModel @Inject constructor(
     private val setLoginUseCase: SetLoginUseCase,
     private val getAllUsersUseCase: GetAllUsersUseCase,
     private val insertFavoriteUserUseCase: InsertFavoriteUserUseCase,

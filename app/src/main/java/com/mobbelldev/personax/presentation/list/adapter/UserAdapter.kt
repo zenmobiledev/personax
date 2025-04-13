@@ -1,4 +1,4 @@
-package com.mobbelldev.personax.presentation.main.adapter
+package com.mobbelldev.personax.presentation.list.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -11,12 +11,12 @@ import com.mobbelldev.personax.R
 import com.mobbelldev.personax.databinding.ItemListUserBinding
 import com.mobbelldev.personax.domain.model.UsersItem
 
-class MainAdapter(
+class UserAdapter(
     val clickItemListener: (UsersItem) -> Unit,
     val clickSaved: (UsersItem) -> Unit,
     val clickUnsaved: (UsersItem) -> Unit,
 ) :
-    ListAdapter<UsersItem, MainAdapter.MainViewHolder>(DIFF_UTIL) {
+    ListAdapter<UsersItem, UserAdapter.MainViewHolder>(DIFF_UTIL) {
     inner class MainViewHolder(private val binding: ItemListUserBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
