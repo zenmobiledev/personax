@@ -8,6 +8,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.ViewCompat
@@ -16,11 +17,14 @@ import com.mobbelldev.personax.R
 import com.mobbelldev.personax.databinding.ActivityMainBinding
 import com.mobbelldev.personax.presentation.favorite.FavoriteActivity
 import com.mobbelldev.personax.presentation.list.UserListFragment
+import com.mobbelldev.personax.presentation.main.viewmodel.MainViewModel
+import com.mobbelldev.personax.presentation.walkthrough.WalkthroughActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    private val mainViewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +38,6 @@ class MainActivity : AppCompatActivity() {
             // two-pane layout (tablet)
             supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_list_container, UserListFragment())
-//                .replace(R.id.fragment_detail_container, DetailUserFragment())
                 .commit()
         }
     }
@@ -84,12 +87,12 @@ class MainActivity : AppCompatActivity() {
 
         R.id.logout_menu -> {
             Toast.makeText(this@MainActivity, "Logout", Toast.LENGTH_SHORT).show()
-//            mainViewModel.setLogin(
-//                isLogin = false
-//            ).also {
-//                startActivity(Intent(this@MainActivity, WalkthroughActivity::class.java))
-//                finish()
-//            }
+            mainViewModel.setLogin(
+                isLogin = false
+            ).also {
+                startActivity(Intent(this@MainActivity, WalkthroughActivity::class.java))
+                finish()
+            }
             true
         }
 
