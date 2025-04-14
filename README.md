@@ -142,6 +142,7 @@ After the build process completes successfully:
 >- [x] Menggunakan Hilt untuk dependency injection
 
 ## Bugs
+:exclamation: **UNKNOWN**
 
 ## Credit / Contributor(s)
 
