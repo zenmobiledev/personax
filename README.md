@@ -21,9 +21,8 @@
 ## Table of Contents
 
 - [Technology Used / Tech Stack](#technology-used--tech-stack)
-- [Preview](#preview)
-- [Demo](#demo)
 - [Features](#features)
+- [Demo](#demo)
 - [Installation (How to run the project)](#installation-how-to-run-the-project)
 - [Tree / Folder Structure](#tree--folder-structure)
 - [Architecture](#architecture)
@@ -33,14 +32,8 @@
 - [Bugs](#bugs)
 - [Credit / Contributor(s)](#credit--contributors)
 
-
-## Preview
-| App Introduction                            |
-|---------------------------------------------|
-| ![App Introduction](assets/preview_app.png) |
-
-## Demo
-
+# PersonaX
+**PersonaX** adalah aplikasi manajemen pengguna yang menampilkan daftar user, detail informasi, dan fitur favorit. Pengguna dapat login, melihat user dalam grid, menyimpan ke favorit, melihat detail lokasi, serta melakukan panggilan atau email langsung.
 
 ## Features
 - **Halaman Login**
@@ -60,6 +53,9 @@
 - **Halaman Favorite User**
 >- Menampilkan daftar user favorit yang tersimpan di penyimpanan lokal
 >- Opsi untuk menghapus user daftar favorit
+
+## Demo
+https://github.com/user-attachments/assets/37217ec7-7fe0-4cad-b8a4-9ecaf3a71279
 
 ## Installation (How to run the project)
 
@@ -100,14 +96,127 @@ After the build process completes successfully:
 ## Tree / Folder Structure
 
 ```
-
+.
+└── app
+    └── src
+        └── main
+            └── java
+                └── com
+                    └── mobbelldev
+                        └── personax
+                            ├── data
+                            │   ├── mapper
+                            │   │   ├── AddressMapper.kt
+                            │   │   ├── BankMapper.kt
+                            │   │   ├── CompanyMapper.kt
+                            │   │   ├── CoordinatesMapper.kt
+                            │   │   ├── CryptoMapper.kt
+                            │   │   ├── FavoriteUserMapper.kt
+                            │   │   ├── HairMapper.kt
+                            │   │   ├── UserResponseMapper.kt
+                            │   │   └── UsersItemMapper.kt
+                            │   ├── repository
+                            │   │   └── PersonaXRepositoryImpl.kt
+                            │   └── source
+                            │       ├── local
+                            │       │   ├── dao
+                            │       │   │   └── FavoriteUserDao.kt
+                            │       │   ├── datasource
+                            │       │   │   ├── PersonaXLocalDataSource.kt
+                            │       │   │   └── PersonaXLocalDataSourceImpl.kt
+                            │       │   ├── db
+                            │       │   │   └── AppDatabase.kt
+                            │       │   ├── entity
+                            │       │   │   └── FavoriteUserEntity.kt
+                            │       │   └── preference
+                            │       │       ├── PreferenceDataStore.kt
+                            │       │       └── PreferenceParameter.kt
+                            │       └── remote
+                            │           ├── api
+                            │           │   └── PersonaXService.kt
+                            │           ├── datasource
+                            │           │   ├── PersonaXRemoteDataSource.kt
+                            │           │   └── PersonaXRemoteDataSourceImpl.kt
+                            │           └── model
+                            │               ├── response
+                            │               │   └── UserResponse.kt
+                            │               ├── AddressDTO.kt
+                            │               ├── BankDTO.kt
+                            │               ├── CompanyDTO.kt
+                            │               ├── CoordinatesDTO.kt
+                            │               ├── CryptoDTO.kt
+                            │               ├── HairDTO.kt
+                            │               └── UsersItemDTO.kt
+                            ├── di
+                            │   ├── AppModule.kt
+                            │   ├── LocalModule.kt
+                            │   ├── MapperModule.kt
+                            │   └── NetworkModule.kt
+                            ├── domain
+                            │   ├── model
+                            │   │   ├── Address.kt
+                            │   │   ├── Bank.kt
+                            │   │   ├── Company.kt
+                            │   │   ├── Coordinates.kt
+                            │   │   ├── Crypto.kt
+                            │   │   ├── FavoriteUser.kt
+                            │   │   ├── Hair.kt
+                            │   │   ├── User.kt
+                            │   │   └── UsersItem.kt
+                            │   ├── repositories
+                            │   │   └── PersonaXRepository.kt
+                            │   └── usecases
+                            │       ├── DeleteFavoriteUserUseCase.kt
+                            │       ├── GetAllUsersUseCase.kt
+                            │       ├── GetFavoriteUsersUseCase.kt
+                            │       ├── InsertFavoriteUserUseCase.kt
+                            │       ├── IsLoginUseCase.kt
+                            │       └── SetLoginUseCase.kt
+                            ├── presentation
+                            │   ├── detail
+                            │   │   ├── constant
+                            │   │   │   ├── BloodType.kt
+                            │   │   │   ├── EyeColor.kt
+                            │   │   │   ├── HairColor.kt
+                            │   │   │   └── HairType.kt
+                            │   │   └── DetailUserFragment.kt
+                            │   ├── favorite
+                            │   │   ├── adapter
+                            │   │   │   └── FavoriteAdapter.kt
+                            │   │   ├── viewmodel
+                            │   │   │   └── FavoriteViewModel.kt
+                            │   │   └── FavoriteActivity.kt
+                            │   ├── list
+                            │   │   ├── adapter
+                            │   │   │   └── UserAdapter.kt
+                            │   │   ├── viewmodel
+                            │   │   │   └── UserListViewModel.kt
+                            │   │   └── UserListFragment.kt
+                            │   ├── login
+                            │   │   ├── viewmodel
+                            │   │   │   └── LoginViewModel.kt
+                            │   │   └── LoginActivity.kt
+                            │   ├── main
+                            │   │   ├── viewmodel
+                            │   │   │   └── MainViewModel.kt
+                            │   │   └── MainActivity.kt
+                            │   └── walkthrough
+                            │       ├── adapter
+                            │       │   └── WalkthroughAdapter.kt
+                            │       ├── viewmodel
+                            │       │   └── WalkthroughViewModel.kt
+                            │       └── WalkthroughActivity.kt
+                            ├── utils
+                            │   ├── IsTablet.kt
+                            │   └── Response.kt
+                            └── MyApp.kt
 ```
 
 ## Architecture
 
 | Architecture                             |
 |------------------------------------------|
-| ![Architecture](assets/architecture.png) |
+| ![Architecture](Assets/architecture.png) |
 
 ## Design Pattern
 
